@@ -1,6 +1,6 @@
 import scrapy
 from scrapy.crawler import CrawlerProcess
-from steamscrape.spiders.prices_spider import PricesSpider
+from forfun.spiders.prices_spider import PricesSpider
 import os
 import json
 import boto3

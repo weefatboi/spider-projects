@@ -16,7 +16,7 @@ scrapes HackerNews article titles, source links, and upvote points<br/>
 -- see 'forfun' (projects folder) > news_data.json for sample json crawler output  
 
 ##### sample news output:
-<img src="images/hackernews-sample-output.png" width="500">
+<img src="images/hackernews-sample-output.png" width="750">
 
 
 

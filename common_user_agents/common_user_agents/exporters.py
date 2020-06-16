@@ -4,8 +4,8 @@
 # @Author: Neal Wong
 # @Email: ibprnd@gmail.com
 
-from scrapy.conf import settings
-from scrapy.contrib.exporter import CsvItemExporter
+from scrapy import settings
+from scrapy.exporters import CsvItemExporter
 
 class CustomCsvItemExporter(CsvItemExporter):
 

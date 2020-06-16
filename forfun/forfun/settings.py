@@ -29,6 +29,11 @@ USER_AGENTS = 'C:/Users/Owner/GitHub/spider-projects/common_user_agents/uas.txt'
 
 # RANDOM_UA_FILE = 'C:/Users/Owner/GitHub/spider-projects/common_user_agents/uas.txt' 
 
+# Rotating Proxies
+ROTATING_PROXY_LIST_PATH = 'C:/Users/Owner/GitHub/spider-projects/common_user_agents/prx.txt'
+
+RANDOM_UA_PER_PROXY = True
+
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
@@ -64,8 +69,10 @@ DOWNLOAD_DELAY = 3
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400,
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None, # base
+    'rotating_proxies.middlewares.RotatingProxyMiddleware': 310, # rotating-proxy
+    'rotating_proxies.middlewares.BanDetectionMiddleware': 320, # rotating-proxy
+    'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400, # random-user-agent
 }
 
 # Enable or disable extensions

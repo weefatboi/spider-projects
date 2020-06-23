@@ -1,8 +1,8 @@
 # spider-projects
  a collection of all personal web crawler projects<br/>
- --> settings.py and middlewares.py have been improved to enable ***rotating proxy*** and ***random user agent*** functionality
+ - [settings.py](forfun/forfun/settings.py) and [middlewares.py](forfun/forfun/middlewares.py) have been improved to enable ***rotating proxy*** and ***random user agent*** functionality
 
-# [1] Steam spider
+# Steam spider
 scrapes from the [Steam Top Sellers](https://store.steampowered.com/search/?filter=topsellers) list and outputs curated deals (under $10) in an email to the user<br/>
 - see [prices_spider.py](forfun/forfun/spiders/prices_spider.py) for spider code<br/>
 - see [scrape_send.py](forfun/forfun/other_scripts/scrape_send.py) for emailer code with [AWS SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html)<br/>
@@ -11,7 +11,7 @@ scrapes from the [Steam Top Sellers](https://store.steampowered.com/search/?filt
 <img src="images/steam-sample-output.png" width="500">
 
 
-# [2] HackerNews spider
+# HackerNews spider
 scrapes [HackerNews](https://news.ycombinator.com/) article titles, source links, and upvote points<br/>
 - see [hackernews_spider.py](forfun/forfun/spiders/hackernews_spider.py) for spider code<br/>
 - see [news_data.json](forfun/news_data.json) for sample output in json  
@@ -20,17 +20,17 @@ scrapes [HackerNews](https://news.ycombinator.com/) article titles, source links
 <img src="images/hackernews-sample-output.png" width="750">
 
 
-# [3] Amazon spider
+# Amazon spider
 scrapes [Amazon](https://www.amazon.com/) market results by search term.<br/>
 user can provide `category= <some-search-term>` in cmd line to scrape that term's results<br/> 
 - see [amazon_spider.py](forfun/forfun/spiders/amazon_spider.py) for spider code<br/>
 - see [amazon_data.json](forfun/amazon_data.json) for sample output in json
 
-### sample news output:
+### sample search results output:
 <img src="images/amazon-sample-output.png" width="750">
 
 
-# Credits:
+# Credits
 1. [scrapy-rotating-proxies](https://github.com/TeamHG-Memex/scrapy-rotating-proxies)
 2. [scrapy-user-agents](https://github.com/hyan15/crawler-demo/tree/master/crawling-basic/scrapy_user_agents)
 3. [Scrapy](https://scrapy.org/)

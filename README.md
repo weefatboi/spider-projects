@@ -13,17 +13,18 @@ scrapes from the [Steam Top Sellers](https://store.steampowered.com/search/?filt
 
 # [2] HackerNews spider
 scrapes [HackerNews](https://news.ycombinator.com/) article titles, source links, and upvote points<br/>
--- see 'forfun' (projects folder) > forfun > spiders > hackernews_spider.py for spider code<br/>
--- see 'forfun' (projects folder) > news_data.json for sample json crawler output  
+- see [hackernews_spider.py](forfun/forfun/spiders/hackernews_spider.py) for spider code<br/>
+- see [news_data.json](forfun/news_data.json) for sample output in json  
 
 ### sample news output:
 <img src="images/hackernews-sample-output.png" width="750">
 
 
 # [3] Amazon spider
-scrapes [Amazon](https://www.amazon.com/) market results by search term. can provide category=< some-search-term > in cmd to scrape that item's results<br/> 
--- see 'forfun' (projects folder) > forfun > spiders > amazon_spider.py for spider code<br/>
--- see 'forfun' (projects folder) > amazon_data.json for sample json crawler output
+scrapes [Amazon](https://www.amazon.com/) market results by search term.<br/>
+user can provide `category= <some-search-term>` in cmd line to scrape that term's results<br/> 
+- see [amazon_spider.py](forfun/forfun/spiders/amazon_spider.py) for spider code<br/>
+- see [amazon_data.json](forfun/amazon_data.json) for sample output in json
 
 ### sample news output:
 <img src="images/amazon-sample-output.png" width="750">

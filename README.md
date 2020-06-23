@@ -1,9 +1,9 @@
 # spider-projects
  a collection of all personal web crawler projects<br/>
- --> **UPDATE 6/17/2020:** settings.py and middlewares.py have been improved to enable ***rotating proxy*** and ***random user agent*** functionality; credit to [scrapy-rotating-proxies](https://github.com/TeamHG-Memex/scrapy-rotating-proxies) and [scrapy-user-agents](https://github.com/hyan15/crawler-demo/tree/master/crawling-basic/scrapy_user_agents)
+ --> settings.py and middlewares.py have been improved to enable ***rotating proxy*** and ***random user agent*** functionality
 
 # [1] Steam spider
-scrapes from the [Steam Top Sellers](https://store.steampowered.com/search/?filter=topsellers) list and outputs curated deals under $10 in an email to the user<br/>
+scrapes from the [Steam Top Sellers](https://store.steampowered.com/search/?filter=topsellers) list and outputs curated deals (under $10) in an email to the user<br/>
 - see [prices_spider.py](forfun/forfun/spiders/prices_spider.py) for spider code<br/>
 - see [scrape_send.py](forfun/forfun/other_scripts/scrape_send.py) for emailer code with [AWS SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html)<br/>
 
@@ -28,4 +28,22 @@ user can provide `category= <some-search-term>` in cmd line to scrape that term'
 
 ### sample news output:
 <img src="images/amazon-sample-output.png" width="750">
+
+
+# Credits:
+1. [scrapy-rotating-proxies](https://github.com/TeamHG-Memex/scrapy-rotating-proxies)
+2. [scrapy-user-agents](https://github.com/hyan15/crawler-demo/tree/master/crawling-basic/scrapy_user_agents)
+3. [Scrapy](https://scrapy.org/)
+4. [AWS SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html)
+
+
+
+
+
+
+
+
+
+
+
 

@@ -4,8 +4,8 @@
 
 # [1] Steam spider
 scrapes from the [Steam Top Sellers](https://store.steampowered.com/search/?filter=topsellers) list and outputs curated deals under $10 in an email to the user<br/>
-- see [prices_spider.py](spiders/prices_spider.py) for spider code<br/>
-- see [scrape_send.py](other_scripts/scrape_send.py) for emailer code with [AWS SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html)<br/>
+- see [prices_spider.py](forfun/forfun/spiders/prices_spider.py) for spider code<br/>
+- see [scrape_send.py](forfun/forfun/other_scripts/scrape_send.py) for emailer code with [AWS SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html)<br/>
 
 ### sample email output:
 <img src="images/steam-sample-output.png" width="500">

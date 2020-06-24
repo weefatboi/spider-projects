@@ -13,6 +13,7 @@ scrapes from the [Steam Top Sellers](https://store.steampowered.com/search/?filt
 
 # HackerNews spider
 scrapes [HackerNews](https://news.ycombinator.com/) article titles, source links, and upvote points<br/>
+- uses pagination to access subsequent articles pages
 - see [hackernews_spider.py](forfun/forfun/spiders/hackernews_spider.py) for spider code<br/>
 - see [news_data.json](forfun/news_data.json) for sample output in json  
 

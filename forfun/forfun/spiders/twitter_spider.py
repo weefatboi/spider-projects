@@ -22,7 +22,7 @@ class TwitterSpider(scrapy.Spider):
         'referer': 'https://twitter.com/search?q=%%23finance&src=recent_search_click',
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-site',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
+        # 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
         'x-csrf-token': '94b769b45691485cc215ab3c14133d0b',
         'x-twitter-active-user': 'yes',
         'x-twitter-auth-type': 'OAuth2Session',

@@ -9,7 +9,18 @@ class HomeFinderSpider(scrapy.Spider):
 
     allowed_domains = ['homefinder.com']
 
-    start_urls = ['https://homefinder.com/for-sale/']
+    start_urls = ['https://homefinder.com/']
+
+    # headers = {
+    #     "Server":"nginx/1.13.12",
+    #     "Content-Type":"application/json",
+    #     "Transfer-Encoding":"chunked",
+    #     "Vary":"Accept-Encoding",
+    #     "X-Powered-By":"PHP/7.3.10",
+    #     "Cache-Control":"no-cache, private",
+    #     "Access-Control-Allow-Credentials":"true",
+    #     "Content-Encoding":"gzip",
+    #     }
 
     headers = {
 
@@ -19,6 +30,7 @@ class HomeFinderSpider(scrapy.Spider):
         "Referer": "https://homefinder.com/",
         "Sec-Fetch-Mode": "cors",
         "Sec-Fetch-Site": "same-site",
+        #"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
         
     }
 
@@ -27,29 +39,45 @@ class HomeFinderSpider(scrapy.Spider):
         state = 'OH'
 
         url = ('https://api.homefinder.com/v1/listing?scope=index&term={},+{}&'
-                'area=%%7B%%22city%%22:%%22{}%%22,%%22state%%22:%%22{}%%22%%7D').format(city, state, state, city)
+                'area=%7B%22city%22:%22{}%22,%22state%22:%22{}%22%7D').format(city, state, city, state)
 
         yield scrapy.Request(url, callback=self.parse_detail, headers=self.headers)
 
     def parse_detail(self, response):
         result = json.loads(response.body)
 
-        detail = {}
+        local = result['listings']['city']
+        state_abrv = result['listings']['state']
+        zipcode = result['listings']['zip']
+        address = result['listings']['addressLine1']
+        year_built = result['listings']['yearBuilt']
+        bed = result['listings']['bed']
+        bath = result['listings']['bath']
+        ptype = result['listings']['propertyType']
+        price = result['listings']['price']
+        sqft = result['listings']['squareFootage']
+        desc = result['listings']['description']
+        nbhd = result['listings']['neighborhood']
 
-        detail['city'] = result['listings']['city']
-        detail['state'] = result['listings']['state']
-        detail['zip'] = result['listings']['zip']
-        detail['address'] = result['listings']['addressLine1']
-        detail['year_built'] = result['listings']['yearBuilt']
-        detail['bed'] = result['listings']['bed']
-        detail['bath'] = result['listings']['bath']
-        detail['type'] = result['listings']['propertyType']
-        detail['price'] = result['listings']['price']
-        detail['sqft'] = result['listings']['squareFootage']
-        detail['desc'] = result['listings']['description']
-        detail['nbhd'] = result['listings']['neighborhood']
+        for item in zip(local, state_abrv, zipcode, address, year_built, bed, bath, ptype, price, sqft, desc, nbhd):
+            listing_data = {
+                'city':item[0],
+                'state':item[1],
+                'zipcode':item[2],
+                'address':item[3],
+                'year_built':item[4],
+                'bed':item[5],
+                'bath':item[6],
+                'ptype':item[7],
+                'price':item[8],
+                'sqft':item[9],
+                'desc':item[10],
+                'nbhd':item[11],
+            } 
 
-        return detail
+            yield listing_data
+            
+        
         
         
         

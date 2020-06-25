@@ -35,7 +35,7 @@ ROTATING_PROXY_LIST_PATH = 'C:/Users/Owner/GitHub/spider-projects/common_user_ag
 RANDOM_UA_PER_PROXY = True
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 1

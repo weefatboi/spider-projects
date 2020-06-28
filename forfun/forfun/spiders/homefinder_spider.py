@@ -19,9 +19,18 @@ class HomeFinderSpider(scrapy.Spider):
             'Accept': 'application/json, text/plain, */*',
             'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'en-US,en;q=0.9',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive',
+            'Host': 'api.homefinder.com',
+            'Origin': 'https://homefinder.com',
+            'Pragma': 'no-cache',
+            'Referer': 'https://homefinder.com/',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-site',
         }
 
-        yield scrapy.http.Request(url, headers=headers)
+        yield scrapy.Request(url, callback=self.parse, headers=headers)
 
 
     def parse(self, response):

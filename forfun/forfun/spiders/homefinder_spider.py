@@ -7,43 +7,24 @@ from pprint import pprint
 class HomeFinderSpider(scrapy.Spider):
     name = 'homefinder'
 
-    allowed_domains = ['homefinder.com']
-
-    start_urls = ['https://homefinder.com/']
-
-    # headers = {
-    #     "Server":"nginx/1.13.12",
-    #     "Content-Type":"application/json",
-    #     "Transfer-Encoding":"chunked",
-    #     "Vary":"Accept-Encoding",
-    #     "X-Powered-By":"PHP/7.3.10",
-    #     "Cache-Control":"no-cache, private",
-    #     "Access-Control-Allow-Credentials":"true",
-    #     "Content-Encoding":"gzip",
-    #     }
-
-    headers = {
-
-        "Accept": "application/json, text/plain, */*",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Referer": "https://homefinder.com/",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Site": "same-site",
-        #"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
-        
-    }
-
-    def parse(self, response):
+    def start_requests(self):
         city = 'Kent'
         state = 'OH'
 
+        # set start url to use site's api
         url = ('https://api.homefinder.com/v1/listing?scope=index&term={},+{}&'
                 'area=%7B%22city%22:%22{}%22,%22state%22:%22{}%22%7D').format(city, state, city, state)
 
-        yield scrapy.Request(url, callback=self.parse_detail, headers=self.headers)
+        headers = {
+            'Accept': 'application/json, text/plain, */*',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'en-US,en;q=0.9',
+        }
 
-    def parse_detail(self, response):
+        yield scrapy.http.Request(url, headers=headers)
+
+
+    def parse(self, response):
         result = json.loads(response.body)
 
         local = result['listings']['city']

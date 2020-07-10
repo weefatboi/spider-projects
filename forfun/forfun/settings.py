@@ -18,17 +18,17 @@ NEWSPIDER_MODULE = 'forfun.spiders'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # 'forfun (+http://www.yourdomain.com)'
 
-USER_AGENTS = 'C:/Users/Owner/GitHub/spider-projects/common_user_agents/uas.txt'
+## USER_AGENTS = 'C:/Users/Owner/GitHub/spider-projects/common_user_agents/uas.txt'
 
 # RANDOM_UA_FILE = 'C:/Users/Owner/GitHub/spider-projects/common_user_agents/uas.txt' 
 
 # Rotating Proxies
-ROTATING_PROXY_LIST_PATH = 'C:/Users/Owner/GitHub/spider-projects/common_user_agents/prx.txt'
+## ROTATING_PROXY_LIST_PATH = 'C:/Users/Owner/GitHub/spider-projects/common_user_agents/prx.txt'
 
-RANDOM_UA_PER_PROXY = True
+## RANDOM_UA_PER_PROXY = True
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 1
@@ -63,9 +63,9 @@ DOWNLOAD_DELAY = 3
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None, # base
-    'rotating_proxies.middlewares.RotatingProxyMiddleware': 310, # rotating-proxy
-    'rotating_proxies.middlewares.BanDetectionMiddleware': 320, # rotating-proxy
-    'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400, # random-user-agent
+   ## 'rotating_proxies.middlewares.RotatingProxyMiddleware': 310, # rotating-proxy
+   ## 'rotating_proxies.middlewares.BanDetectionMiddleware': 320, # rotating-proxy
+   ## 'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400, # random-user-agent
 }
 
 # Enable or disable extensions

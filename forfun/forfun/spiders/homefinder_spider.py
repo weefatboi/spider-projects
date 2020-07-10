@@ -1,40 +1,49 @@
 import scrapy
 import json
-import requests
 
 
 
 class HomeFinderSpider(scrapy.Spider):
     name = 'homefinder'
 
+    headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
+
+        }
+
     def start_requests(self):
         city = 'Kent'
         state = 'OH'
 
         # set start url to use site's api
-        url = ('https://api.homefinder.com/v1/listing?scope=index&term={},+{}&'
+        start_urls = ('https://api.homefinder.com/v1/listing?scope=index&term={},+{}&'
                 'area=%7B%22city%22:%22{}%22,%22state%22:%22{}%22%7D').format(city, state, city, state)
 
-        headers = {
-            'Accept': 'application/json, text/plain, */*',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Cache-Control': 'no-cache',
-            'Connection': 'keep-alive',
-            'Host': 'api.homefinder.com',
-            'Origin': 'https://homefinder.com',
-            'Pragma': 'no-cache',
-            'Referer': 'https://homefinder.com/',
-            'Sec-Fetch-Dest': 'empty',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Site': 'same-site',
-        }
+        
 
-        yield scrapy.Request(url, callback=self.parse, headers=headers)
+        yield scrapy.Request(start_urls, headers=self.headers, callback=self.parse)
+
+    #     headers = {
+    #         'Accept': 'application/json, text/plain, */*',
+    #         'Accept-Encoding': 'gzip, deflate, br',
+    #         'Accept-Language': 'en-US,en;q=0.9',
+    #         'Cache-Control': 'no-cache',
+    #         'Connection': 'keep-alive',
+    #         'Host': 'api.homefinder.com',
+    #         'Origin': 'https://homefinder.com',
+    #         'Pragma': 'no-cache',
+    #         'Referer': 'https://homefinder.com/',
+    #         'Sec-Fetch-Dest': 'empty',
+    #         'Sec-Fetch-Mode': 'cors',
+    #         'Sec-Fetch-Site': 'same-site',
+    #     }
+
+    #     yield scrapy.Request(url, callback=self.parse, headers=headers)
 
 
     def parse(self, response):
         result = json.loads(response.body)
+        print(result)
 
         local = result['listings']['city']
         state_abrv = result['listings']['state']

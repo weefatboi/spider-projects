@@ -31,6 +31,13 @@ user can provide `category= <some-search-term>` in cmd line to scrape that term'
 <img src="images/amazon-sample-output.png" width="750">
 
 
+# HomeFinder spider
+scrapes [HomeFinder](https://homefinder.com/) site for real estate listing information by City and State terms<br/>
+accesses website's structured json response instead of referencing html<br/>
+- see [homefinder_spider.py](forfun/forfun/spiders/homefinder_spider.py) for spider code<br/>
+- see [listing_data.json](forfun/listing_data.json) for sample output
+
+
 # Credits
 1. [scrapy-rotating-proxies](https://github.com/TeamHG-Memex/scrapy-rotating-proxies)
 2. [scrapy-user-agents](https://github.com/hyan15/crawler-demo/tree/master/crawling-basic/scrapy_user_agents)

@@ -1,5 +1,6 @@
 import scrapy
 import json
+import os
 
 
 
@@ -12,13 +13,19 @@ class HomeFinderSpider(scrapy.Spider):
 
         }
 
-    def start_requests(self):
-        city = 'Kent'
-        state = 'OH'
+    city = 'Kent'
+    state = 'OH'
 
+    try:
+        os.remove('listing_data.json')
+    except OSError:
+        pass
+
+    def start_requests(self):
+        
         # set start url to use site's api
         start_urls = ('https://api.homefinder.com/v1/listing?scope=index&term={},+{}&'
-                'area=%7B%22city%22:%22{}%22,%22state%22:%22{}%22%7D').format(city, state, city, state)
+                'area=%7B%22city%22:%22{}%22,%22state%22:%22{}%22%7D').format(self.city, self.state, self.city, self.state)
 
         
 
@@ -26,6 +33,15 @@ class HomeFinderSpider(scrapy.Spider):
 
 
     def parse(self, response):
+        results = json.loads(response.body)
+        for i in range(1, results['meta']['pages']+1):
+            page = str(i)
+            next_url = ('https://api.homefinder.com/v1/listing?scope=index&term={},+{}&'
+                'area=%7B%22city%22:%22{}%22,%22state%22:%22{}%22%7D&page={}').format(self.city, self.state, self.city, self.state, page)
+            yield response.follow(next_url, callback=self.parse_detail)
+
+
+    def parse_detail(self, response):
         result = json.loads(response.body)
 
         for listing in result['listings']:
@@ -41,7 +57,7 @@ class HomeFinderSpider(scrapy.Spider):
                 'ptype':listing['propertyType'],
                 'price':listing['price'],
                 'sqft':listing['squareFootage'],
-                'desc':listing['description'],
+                'desc':listing.get('description'),
                 'nbhd':listing.get('neighborhood'),
             } 
 

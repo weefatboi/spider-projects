@@ -10,21 +10,22 @@ class RealtorSpider(scrapy.Spider):
     city = 'Kent'
     state = 'OH'
 
+    start_urls = ['https://www.realtor.com/api/v1/hulk?client_id=rdc-x&schema=vesta']
+
     headers = {
         
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
             'Content-Type': 'application/json; charset=utf-8',
             'Transfer-Encoding': 'chunked',
             'Connection': 'keep-alive',
-            'Date': 'Wed, 29 Jul 2020 01:56:20 GMT',
             'X-Powered-By': 'Express',
             'Vary': 'Origin, Accept-Encoding',
-            'ETag': 'W/"28831-osLKMCzR2p1R4F+ot5QS5duWb+E"',
+            'ETag': 'W/"27f6a-dAtY64tytg5l6RUJvSjDUX9d4uY"',
             'Content-Encoding': 'gzip',
             'X-Cache': 'Miss from cloudfront',
-            'Via': '1.1 03ed22e55f14c5e22303b8bea377a2cb.cloudfront.net (CloudFront)',
-            'X-Amz-Cf-Pop': 'ORD50-C1',
-            'X-Amz-Cf-Id': 'b11Gl_eGxtuI-X3huElilLKTpX1bnJy23HQbnk3QPj46N3C1RvUaLw=='
+            'Via': '1.1 33aa20daaac992582a9003df568480c2.cloudfront.net (CloudFront)',
+            'X-Amz-Cf-Pop': 'ORD51-C2',
+            'X-Amz-Cf-Id': '7XS5dcyvLv3kTmwq-MOWtpb-8LBXZZ8s1njSfiJJBZsBFvgmDjvLyQ=='
 
         }
 
@@ -53,11 +54,11 @@ class RealtorSpider(scrapy.Spider):
                         "device_type": "web"
                     },
                     "user_data": {
-                        "last_view_timestamp": -1
+                        "last_view_timestamp": '-1'
                     }
                 },
-                "limit": 42,
-                "offset": 0,
+                "limit": '42',
+                "offset": '0',
                 "zohoQuery": {
                     "silo": "search_result_page",
                     "location": "{}, {}".format(self.city, self.state),
@@ -76,7 +77,8 @@ class RealtorSpider(scrapy.Spider):
         # start_urls = ['https://www.realtor.com/api/v1/hulk?client_id=rdc-x&schema=vesta']
 
         
-        yield scrapy.FormRequest('https://www.realtor.com/api/v1/hulk?client_id=rdc-x&schema=vesta', method='POST', callback=self.parse, formdata=params)
+        yield scrapy.FormRequest('https://www.realtor.com/api/v1/hulk?client_id=rdc-x&schema=vesta', 
+                method='POST', callback=self.parse, formdata=params, headers=self.headers)
 
     def parse(self, response):
         

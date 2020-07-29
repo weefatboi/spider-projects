@@ -12,7 +12,19 @@ class RealtorSpider(scrapy.Spider):
 
     headers = {
         
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
+            'Content-Type': 'application/json; charset=utf-8',
+            'Transfer-Encoding': 'chunked',
+            'Connection': 'keep-alive',
+            'Date': 'Wed, 29 Jul 2020 01:56:20 GMT',
+            'X-Powered-By': 'Express',
+            'Vary': 'Origin, Accept-Encoding',
+            'ETag': 'W/"28831-osLKMCzR2p1R4F+ot5QS5duWb+E"',
+            'Content-Encoding': 'gzip',
+            'X-Cache': 'Miss from cloudfront',
+            'Via': '1.1 03ed22e55f14c5e22303b8bea377a2cb.cloudfront.net (CloudFront)',
+            'X-Amz-Cf-Pop': 'ORD50-C1',
+            'X-Amz-Cf-Id': 'b11Gl_eGxtuI-X3huElilLKTpX1bnJy23HQbnk3QPj46N3C1RvUaLw=='
 
         }
 
@@ -64,7 +76,6 @@ class RealtorSpider(scrapy.Spider):
         # start_urls = ['https://www.realtor.com/api/v1/hulk?client_id=rdc-x&schema=vesta']
 
         
-        import pdb; pdb.set_trace()
         yield scrapy.FormRequest('https://www.realtor.com/api/v1/hulk?client_id=rdc-x&schema=vesta', method='POST', callback=self.parse, formdata=params)
 
     def parse(self, response):

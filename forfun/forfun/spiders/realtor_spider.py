@@ -14,20 +14,7 @@ class RealtorSpider(scrapy.Spider):
 
     headers = {
 
-            "Content-Type": 'application/json',
-
-            
-            # 'Content-Type': 'application/json; charset=utf-8',
-            # 'Transfer-Encoding': 'chunked',
-            # 'Connection': 'keep-alive',
-            # 'X-Powered-By': 'Express',
-            # 'Vary': 'Origin, Accept-Encoding',
-            # 'ETag': 'W/"27f6a-dAtY64tytg5l6RUJvSjDUX9d4uY"',
-            # 'Content-Encoding': 'gzip',
-            # 'X-Cache': 'Miss from cloudfront',
-            # 'Via': '1.1 33aa20daaac992582a9003df568480c2.cloudfront.net (CloudFront)',
-            # 'X-Amz-Cf-Pop': 'ORD51-C2',
-            # 'X-Amz-Cf-Id': '7XS5dcyvLv3kTmwq-MOWtpb-8LBXZZ8s1njSfiJJBZsBFvgmDjvLyQ=='
+            "Content-Type": 'application/json'
 
         }
 
@@ -76,10 +63,10 @@ class RealtorSpider(scrapy.Spider):
         }
         
         # set start url to use site's api
-        # start_urls = ['https://www.realtor.com/api/v1/hulk?client_id=rdc-x&schema=vesta']
+        url = 'https://www.realtor.com/api/v1/hulk?client_id=rdc-x&schema=vesta'
 
         
-        yield scrapy.Request('https://www.realtor.com/api/v1/hulk?client_id=rdc-x&schema=vesta', 
+        yield scrapy.Request(url, 
                 method='POST', callback=self.parse, body=json.dumps(params), headers=self.headers)
 
     def parse(self, response):

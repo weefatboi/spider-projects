@@ -70,10 +70,10 @@ class RealtorSpider(scrapy.Spider):
         self.offset += self.limit
 
 
-    try:
-        os.remove('realtor_data.json')
-    except OSError:
-        pass
+    # try:
+    #     os.remove('realtor_data.json')
+    # except OSError:
+    #     pass
 
 
     def start_requests(self):

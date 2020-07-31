@@ -16,10 +16,10 @@ class HomeFinderSpider(scrapy.Spider):
     city = 'Kent'
     state = 'OH'
 
-    # try:
-    #     os.remove('listing_data.json')
-    # except OSError:
-    #     pass
+    try:
+        os.remove('homefinder_data.json')
+    except OSError:
+        pass
 
     def start_requests(self):
         

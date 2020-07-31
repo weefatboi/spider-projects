@@ -19,8 +19,8 @@ class RealtorSpider(scrapy.Spider):
             "Content-Type": 'application/json'
 
         }
-  
-    
+
+
     def get_params(self):
 
         params = {
@@ -79,14 +79,37 @@ class RealtorSpider(scrapy.Spider):
     def start_requests(self):
         return self.increment_offset()
 
+
     def parse(self, response):
         results = json.loads(response.body)
-
-        print(results)
-        import pdb; pdb.set_trace()
-        if results.get('data').get('home_search').get('count') >= self.limit:
-            return self.increment_offset()
         
+        for listing in results.get('data').get('home_search').get('results'):
+
+            yield {
+                'city':listing['location']['address']['city'],
+                'state':listing['location']['address']['state_code'],
+                'zipcode':listing['location']['address']['postal_code'],
+                'address':listing['location']['address']['line'],
+                'year_built':listing['description']['year_built'],
+                'bed':listing['description']['beds'],
+                'bath':listing['description']['baths'],
+                'ptype':listing['description']['type'],
+                'price':listing['list_price'],
+                'sqft':listing['description']['sqft'],
+                'desc':listing.get('tags'),
+                'nbhd':listing.get('community'),
+            }
+        
+        
+        if results.get('data').get('home_search').get('count') >= self.limit:
+            yield scrapy.Request(self.url, 
+                method='POST', callback=self.parse, body=self.get_params(), headers=self.headers)
+
+            self.offset += self.limit
+    
+
+
+
 
 
 

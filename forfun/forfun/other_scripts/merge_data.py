@@ -13,20 +13,20 @@ homefinder_df = pd.read_json(path1)
 realtor_df = pd.read_json(path2)
 homes_df = pd.read_json(path3)
 
-dataframes = [homefinder_df, realtor_df, homes_df]
 
-# dfs = {0: homefinder_df, 1: realtor_df, 2: homes_df}
-# suffix = ("_homefinder", "_realtor", "_homes")
-# for i in dfs:
-#     dfs[i] = dfs[i].add_suffix(suffix[i])
+dfs = {0: homefinder_df, 1: realtor_df, 2: homes_df}
+suffix = ("_homefinder", "_realtor", "_homes")
+keep_same = {'address', 'city', 'state', 'zipcode'}
 
-
-
-df = reduce(lambda  left,right: pd.merge(left, right, on=["address", "city", "state", "zipcode"],
-                                            how='outer'), dataframes)
+for i in dfs:
+    dfs[i].columns = ['{}{}'.format(c, '' if c in keep_same else suffix[i]) for c in dfs[i].columns]
 
 
-df.to_csv('C:/Users/Owner/GitHub/spider-projects/forfun/master_list.csv')
+final = reduce(lambda  left,right: pd.merge(left, right, on=["address", "city", "state", "zipcode"],
+                                            how='outer'), dfs.values())
+
+
+final.to_csv('C:/Users/Owner/GitHub/spider-projects/forfun/master_list.csv')
 
 
 

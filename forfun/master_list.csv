@@ -1,4 +1,4 @@
-,city,state,zipcode,address,year_built_x,bed_x,bath_x,ptype_x,price_x,sqft_x,desc,nbhd,year_built_y,bed_y,bath_y,ptype_y,price_y,sqft_y,tags,year_built,bed,bath,ptype,price,sqft,description
+,city,state,zipcode,address,year_built_homefinder,bed_homefinder,bath_homefinder,ptype_homefinder,price_homefinder,sqft_homefinder,desc_homefinder,nbhd_homefinder,year_built_realtor,bed_realtor,bath_realtor,ptype_realtor,price_realtor,sqft_realtor,tags_realtor,year_built_homes,bed_homes,bath_homes,ptype_homes,price_homes,sqft_homes,description_homes
 0,KENT,OH,44240,1667 HONEYCHUCK LN,0.0,0.0,0.0,Raw Land,70000.0,0.0,"Last home site in Country View Estates. Beautiful rolling lanes of upscale custom homes set in a neighborhood boasting
 an ""Open Space"" concept that sustains the ""Large Country Feeling"" throughout. This home site is nestled in a cul-de-sac of
 the final phase of Country View Estates. A wooded backdrop offers the rear yard privacy that you have been looking for.

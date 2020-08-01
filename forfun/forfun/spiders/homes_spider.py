@@ -79,22 +79,21 @@ class HomesSpider(scrapy.Spider):
 
     def parse(self, response):
         results = json.loads(response.body)
-        import pdb; pdb.set_trace()
         
         for listing in results.get('results')[0].get('body').get('items'):
 
             yield {
-                'city':listing['location']['address']['city'],
-                'state':listing['location']['address']['state_code'],
-                'zipcode':listing['location']['address']['postal_code'],
-                'address':listing['location']['address']['line'],
-                'year_built':listing['description']['year_built'],
-                'bed':listing['description']['beds'],
-                'bath':listing['description']['baths'],
-                'ptype':listing['description']['type'],
-                'price':listing['list_price'],
-                'sqft':listing['description']['sqft'],
-                'tags':listing.get('tags'),
+                'city':listing['location']['city']['preferred'],
+                'state':listing['location']['region'],
+                'zipcode':listing['location']['postal_code'],
+                'address':listing['location']['address']['value'],
+                'year_built':listing['year_built'],
+                'bed':listing['beds']['value'],
+                'bath':listing['baths']['value'],
+                'ptype':listing['property_type'],
+                'price':listing['price']['value'],
+                'sqft':listing['square_footage']['value'],
+                'description':listing.get('caption'),
             }
         
         

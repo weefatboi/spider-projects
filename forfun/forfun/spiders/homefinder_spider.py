@@ -47,10 +47,10 @@ class HomeFinderSpider(scrapy.Spider):
         for listing in result['listings']:
 
             yield {
-                'city':listing['city'],
-                'state':listing['state'],
+                'city':listing['city'].upper(),
+                'state':listing['state'].upper(),
                 'zipcode':listing['zip'],
-                'address':listing['addressLine1'],
+                'address':listing['addressLine1'].upper(),
                 'year_built':listing['yearBuilt'],
                 'bed':listing['bed'],
                 'bath':listing['bath'],

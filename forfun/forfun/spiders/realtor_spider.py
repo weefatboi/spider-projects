@@ -86,10 +86,10 @@ class RealtorSpider(scrapy.Spider):
         for listing in results.get('data').get('home_search').get('results'):
 
             yield {
-                'city':listing['location']['address']['city'],
-                'state':listing['location']['address']['state_code'],
+                'city':listing['location']['address']['city'].upper(),
+                'state':listing['location']['address']['state_code'].upper(),
                 'zipcode':listing['location']['address']['postal_code'],
-                'address':listing['location']['address']['line'],
+                'address':listing['location']['address']['line'].upper(),
                 'year_built':listing['description']['year_built'],
                 'bed':listing['description']['beds'],
                 'bath':listing['description']['baths'],

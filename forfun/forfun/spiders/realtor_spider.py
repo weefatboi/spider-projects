@@ -70,10 +70,10 @@ class RealtorSpider(scrapy.Spider):
         self.offset += self.limit
 
 
-    try:
-        os.remove('realtor_data.json')
-    except OSError:
-        pass
+    # try:
+    #     os.remove('C:/Users/Owner/GitHub/spider-projects/forfun/realtor_data.json')
+    # except OSError:
+    #     pass
 
 
     def start_requests(self):
@@ -96,8 +96,7 @@ class RealtorSpider(scrapy.Spider):
                 'ptype':listing['description']['type'],
                 'price':listing['list_price'],
                 'sqft':listing['description']['sqft'],
-                'desc':listing.get('tags'),
-                'nbhd':listing.get('community'),
+                'tags':listing.get('tags'),
             }
         
         

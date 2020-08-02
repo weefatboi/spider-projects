@@ -51,6 +51,7 @@ user can provide `category= <some-search-term>` in cmd line to scrape that term'
 2. [scrapy-user-agents](https://github.com/hyan15/crawler-demo/tree/master/crawling-basic/scrapy_user_agents)
 3. [Scrapy](https://scrapy.org/)
 4. [AWS SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html)
+5. [Postman](https://learning.postman.com/docs/getting-started/introduction/)
 
 
 

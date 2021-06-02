@@ -46,7 +46,7 @@ Twisted==20.3.0
 typed-ast==1.4.1
 typing==3.7.4.1
 ua-parser==0.10.0
-urllib3==1.25.9
+urllib3==1.26.5
 user-agents==2.1
 w3lib==1.22.0
 wrapt==1.12.1
